@@ -13,6 +13,8 @@ public class JavaUsernameValidator {
 
     public static void main(String[] args) {
 
+        int i = 5_000;
+
         int n = Integer.parseInt(scan.nextLine());
         while (n-- != 0) {
             String userName = scan.nextLine();
