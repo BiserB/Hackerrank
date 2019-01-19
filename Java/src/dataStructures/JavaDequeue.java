@@ -1,7 +1,6 @@
 package dataStructures;
 
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -22,47 +21,48 @@ public class JavaDequeue {
 
             Deque<Integer> deque = new ArrayDeque<>(subSize);
 
-            int[] input = new int[size];
+            int[] allNumbers = new int[size];
 
-            String[] numbers = reader.readLine().split(" ");
+            String[] input = reader.readLine().split(" ");
 
-            for (int i = 0; i < input.length; i++) {
-                input[i] = Integer.parseInt(numbers[i]);
+            for (int i = 0; i < allNumbers.length; i++) {
+                allNumbers[i] = Integer.parseInt(input[i]);
             }
 
             for (int i = 0; i < subSize; i++) {
 
-                deque.addLast(input[i]);
+                deque.addLast(allNumbers[i]);
             }
 
-            maxUnique = findMaxUnique(deque);
+            Set<Integer> uniques = new HashSet<>(deque);
+
+            maxUnique = uniques.size();
 
             for (int i = subSize; i < size; i++) {
 
-                int num = input[i];
+                int num = allNumbers[i];
 
-                deque.removeFirst();
+                int first = deque.removeFirst();
+
                 deque.addLast(num);
+                uniques.add(num);
 
-                int currentUnique = findMaxUnique(deque);
+                if (!deque.contains(first)){
+                    uniques.remove(first);
+                }
+
+                int currentUnique = uniques.size();
 
                 if (currentUnique > maxUnique){
                     maxUnique = currentUnique;
                 }
             }
+
+            System.out.println(maxUnique);
         }
         catch (IOException ioe){
+
             System.out.println(ioe.getMessage());
         }
-
-        System.out.println(maxUnique);
     }
-
-    private static int findMaxUnique(Deque<Integer> deque) {
-
-        Set<Integer> set = new HashSet<>(deque);
-
-        return set.size();
-    }
-
 }
