@@ -62,7 +62,6 @@ class Priorities{
 
                 result.remove(result.size() - 1);
             }
-
         }
 
         Collections.reverse(result);
