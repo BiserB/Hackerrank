@@ -16,11 +16,11 @@ class FoodFactory {
     Food getFood(String order) {
 
         if (order.equals("pizza")){
-            return new Pizza();
+            //return new Pizza();
         }
 
         if (order.equals("cake")){
-            return new Cake();
+            //return new Cake();
         }
 
         return null;
